@@ -2,9 +2,13 @@ package pagetestcases2;
 
 import static org.testng.Assert.fail;
 
+import java.io.IOException;
+
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.inetbanking.pageObjects.HeaderoptionPage;
 import com.inetbanking.pageObjects.QaAccSuccesPage;
 import com.inetbanking.pageObjects.QaContactusPage;
 import com.inetbanking.pageObjects.QaHomepage;
@@ -20,8 +24,16 @@ public class QaRefTest1  extends  BaseClass2 {
 	QaContactusPage ca;
 	QaLoginpage lp;
 	 QaShoppingcartPage sp;
+	 HeaderoptionPage headerpage;
 	 
 	
+	             @BeforeMethod
+	            public void set() throws IOException {
+	            	openbrowserandapplication("crome");
+	            	   hp=new QaHomepage(driver);
+	            	   hp.clickmyacc();
+	                   hp.clickregister();
+	            }
 	 
   @Test(priority = 1)
   public void regpagecheckallfields() {
@@ -109,31 +121,34 @@ public class QaRefTest1  extends  BaseClass2 {
         
         @Test(priority = 4)
              public void VerifyallLinksOnRegPage() {
-        	 hp=new QaHomepage(driver);
-         	  hp.clickmyacc();
-         	  hp.clickregister();
+        	reg =new QaRagisterPage(driver);
+        	 driver  = reg.getdriverfromregpage();
+        	 headerpage  = new  HeaderoptionPage(driver);
+        	
          	  
-         	reg =new QaRagisterPage(driver);
-           	reg.clickphonelink();  
+         	
+        	 headerpage.clickphonelink();  
              ca=new  QaContactusPage(driver);
              Assert.assertTrue(ca.didwenavigatetocontactus());	
-             	
-            driver  = navigateback(driver);
+             driver  = navigateback(driver);
+            
             
             reg =new QaRagisterPage(driver);
-             
-       	       reg.clickwishlistlink();
+            driver  = reg.getdriverfromregpage();
+            headerpage  = new  HeaderoptionPage(driver);
+            headerpage .clickwishlistlink();
        	       
        	       lp=new QaLoginpage(driver);
        	      
        	    Assert.assertTrue( lp.didnavigateloginpage());
-       	    
-       	        driver   = navigateback(driver);
+       	     driver   = navigateback(driver);
+       	        
        	        
        	        
        	     reg =new QaRagisterPage(driver);
-       	     
-       	           reg.clickShoppingCartLink();
+       	  driver  = reg.getdriverfromregpage();
+       	headerpage  = new  HeaderoptionPage(driver);
+    	headerpage .clickshoppingcartlink();
        	          
        	           sp=new QaShoppingcartPage(driver);
        	           
@@ -141,15 +156,20 @@ public class QaRefTest1  extends  BaseClass2 {
        	        Assert.assertTrue(sp.didnavigateshoppingcart()); 
        	        driver  = navigateback(driver);
        	        
+       	        
        	     reg =new QaRagisterPage(driver);
-       	     
-       	     reg.clickchekoutLink();
+       	    driver  = reg.getdriverfromregpage();
+       		headerpage  = new  HeaderoptionPage(driver);
+           	 
+       		    headerpage .clickcheckoutLink();
        	     
        	       Assert.assertTrue(sp.didnavigateshoppingcart());
        	    driver  = navigateback(driver);
        	    
        	      reg =new QaRagisterPage(driver);
-       	      reg.clickprivacylink();
+       	   driver  = reg.getdriverfromregpage();
+      		headerpage  = new  HeaderoptionPage(driver);
+      		headerpage   .clickprivacypolicylink();
        	  boolean xopdisplay = reg.waitandcheckDisplaystatusofcloseprivacyoption(driver, 10);
        	      
        	        Assert.assertTrue(xopdisplay);//true
@@ -164,10 +184,12 @@ public class QaRefTest1  extends  BaseClass2 {
         
              public void verifyregAccWithoutprovidingpassAnd() {
         	
-        	 hp=new QaHomepage(driver);
-         	  hp.clickmyacc();
-       	     hp.clickregister();
+        	
+         	  
+       	    
        	  reg =new QaRagisterPage(driver);
+    	
+    	 
     	  
     	  reg.myacc();
     	  reg.register();

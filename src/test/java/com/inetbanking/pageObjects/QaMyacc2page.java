@@ -16,6 +16,10 @@ public class QaMyacc2page {
 	
 	//locator
 	
+	 @FindBy(xpath = "//span[@class='input-group-btn']/child::button")
+	  WebElement searchbutton;
+	 @FindBy(xpath = "//input[@name='search']")
+	   WebElement searchbox;
 	@FindBy(xpath = "//a[text()='Edit your account information']")
 	WebElement editInformation;
 	
@@ -34,6 +38,10 @@ public class QaMyacc2page {
 	
 	
 	//action method
+	public WebDriver getdriver() {
+		return driver;
+		
+	}
 	public String getsuccmsg() {
 		return succmsg.getText();
 		
@@ -63,6 +71,12 @@ public class QaMyacc2page {
 	return logoutoption.isDisplayed();
 	
 	}
+	public void enterproductintosearchfield(String pro){
+		  searchbox.sendKeys(pro);
+	  }
+	  public void clicksearchbutton() {
+		  searchbutton.click();
+	  }
 	
 	
 }

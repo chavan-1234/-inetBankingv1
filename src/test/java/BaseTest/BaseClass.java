@@ -103,4 +103,20 @@ public class BaseClass {
 		public String gethtmlpagecode() {
 		      return	driver.getPageSource();
 		}
+		
+		public void closebrowser(WebDriver driver) {
+			if(driver!=null) {
+				driver.quit();
+				
+			}
+	 }
+		
+		public String getpageurl(WebDriver driver) {
+			 return driver.getCurrentUrl();
+			
+		}
+		public String pagetitle(WebDriver driver) {
+		       return 	driver.getTitle();
+			
+		}
 }

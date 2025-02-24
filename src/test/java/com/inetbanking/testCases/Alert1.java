@@ -16,6 +16,8 @@ public class Alert1 {
 		WebDriver driver= new ChromeDriver();
 		driver.get("https://omayo.blogspot.com/");
 		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
 	     //  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	//	driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
 		

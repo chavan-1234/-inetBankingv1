@@ -92,10 +92,15 @@ public 	QaRagisterPage(WebDriver driver){
 	  @FindBy(xpath = "//div[text()='Password confirmation does not match password!']")
 	  WebElement confirmpwderror;
 	  
+	  @FindBy(xpath = "//a[text()='login page']")
+	  WebElement loginpagelink;
 	  
 	  
 	  
 	  //action method
+	  public void clickloginpagelink() {
+		  loginpagelink.click();
+	  }
 	  public void myacc() {
 		  myacc.click();
 	  }
@@ -259,5 +264,9 @@ public 	QaRagisterPage(WebDriver driver){
 	  public void clickxoption() {
 		  privacypolicyclosebutton.click();
 	  }
-	  
+	
+	    public WebDriver getdriverfromregpage() {
+	    	return driver;
+	    	
+	    }
 }

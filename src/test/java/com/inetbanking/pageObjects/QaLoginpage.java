@@ -38,8 +38,16 @@ public class QaLoginpage extends BasePage1{
          @FindBy(xpath = "//div[@class='list-group']/descendant::a[text()='My Account']")
          WebElement myaccright;
          
+         @FindBy(xpath = "//div[@class='list-group']/child::a[text()='Login']")
+         WebElement rightsideloginoption;
+         
+         
          // action methods
          
+         
+           public void clickrightsideloginoption() {
+        	   rightsideloginoption.click();
+           }
          public String getcopytextintoemialfield() {
         	return emailfield.getAttribute("value");
         	 

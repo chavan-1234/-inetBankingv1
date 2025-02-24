@@ -16,6 +16,7 @@ import com.inetbanking.pageObjects.QaHomepage;
 import com.inetbanking.pageObjects.QaLoginpage;
 import com.inetbanking.pageObjects.QaLogoutPage;
 import com.inetbanking.pageObjects.QaMyacc2page;
+import com.inetbanking.pageObjects.QaRagisterPage;
 import com.inetbanking.pageObjects.QaforgotpwdPage;
 import com.inetbanking.utilities.Commonutils;
 
@@ -31,6 +32,7 @@ public class QaLoginTest  extends  BaseClass{
 	         QaforgotpwdPage fp;
 	         QaChangepwdpage cp;
 	         QaLogoutPage logout;
+	         QaRagisterPage rp;
 	         
 	         
 	         
@@ -51,9 +53,8 @@ public class QaLoginTest  extends  BaseClass{
 	              
 	              @AfterMethod
 	              public void teardown() {
-	            	  if(driver!=null) {
-	            		  driver.quit();
-	            	  }
+	            	  closebrowser(driver);
+	            	  
 	              }
 	      
 	              
@@ -240,4 +241,32 @@ public class QaLoginTest  extends  BaseClass{
 	            	  lp.enterPassword(null); //enter new user should login
 	            	Assert.assertTrue(ap.isuserLogedin()); //true user login 
 	              }
+	              
+	              @Test(priority = 16)
+	              
+	       public void  verifymultiplewaysofnavigatetoliginpage() {
+	            	  //1
+	            	  lp  = new QaLoginpage(driver);
+	            	  lp.clickcontinue();
+	            	  rp=new QaRagisterPage(driver);
+	            	  rp.clickloginpagelink();
+	            	  Assert.assertTrue(lp.didnavigateloginpage());
+	            	  
+	            	  //2
+	            	    lp  = new QaLoginpage(driver);
+	            	   lp.clickrightsideloginoption();
+	            	   
+	            	   Assert.assertTrue(lp.didnavigateloginpage());
+	            	   
+	            	   //3
+	            	       hp = new QaHomepage(driver);
+	            	       hp.clickmyacc();
+	            	       hp.clicklogin();
+	            	       Assert.assertTrue(lp.didnavigateloginpage());
+	              }
+	              
+	              
+	              
+	              
+	              
 }

@@ -50,12 +50,12 @@ public class BaseClass2 {
 		
   }//setup
 	
-	@AfterClass
-	
-	public void teardown() {
-		driver.quit();
-		
-	}
+//	@AfterClass
+//	
+//	public void teardown() {
+//		driver.quit();
+//		
+//	}
 	
 	public WebDriver navigateback(WebDriver driver) {
 		
@@ -64,6 +64,14 @@ public class BaseClass2 {
 		
 	}
 	
+	public String geturl(WebDriver driver) {
+	 return	driver.getCurrentUrl();
+		
+	}
+	public String pagetitle(WebDriver driver) {
+	       return 	driver.getTitle();
+		
+	}
 	
 	
 	
